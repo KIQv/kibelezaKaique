@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{375AECF0-21C5-4795-A6DA-DE106A3CF508}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>kibelezaKaique</RootNamespace>
+    <AssemblyName>kibelezaKaique</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.19.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Protobuf.3.19.4\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Compression.LZ4.1.2.6\lib\net46\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Compression.LZ4.Streams.1.2.6\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.30.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>packages\MySql.Data.8.0.30\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>packages\MySql.Data.8.0.30\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>packages\MySql.Data.8.0.30\lib\net452\ZstdNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="01-Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="01-Login.Designer.cs">
+      <DependentUpon>01-Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="02-Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="02-Menu.Designer.cs">
+      <DependentUpon>02-Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="03-Empresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="03-Empresa.Designer.cs">
+      <DependentUpon>03-Empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="04-Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="04-Cliente.Designer.cs">
+      <DependentUpon>04-Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="05-Servico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="05-Servico.Designer.cs">
+      <DependentUpon>05-Servico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="06-Funcionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="06-Funcionario.Designer.cs">
+      <DependentUpon>06-Funcionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="07-Relatorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="07-Relatorio.Designer.cs">
+      <DependentUpon>07-Relatorio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="08-Contato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="08-Contato.Designer.cs">
+      <DependentUpon>08-Contato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="09-Email.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="09-Email.Designer.cs">
+      <DependentUpon>09-Email.cs</DependentUpon>
+    </Compile>
+    <Compile Include="10-CadEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="10-CadEmpresa.Designer.cs">
+      <DependentUpon>10-CadEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="11-CadCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="11-CadCliente.Designer.cs">
+      <DependentUpon>11-CadCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="12-CadServico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="12-CadServico.Designer.cs">
+      <DependentUpon>12-CadServico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="13-CadFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="13-CadFuncionario.Designer.cs">
+      <DependentUpon>13-CadFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="14-CadReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="14-CadReserva.Designer.cs">
+      <DependentUpon>14-CadReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="15-TelEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="15-TelEmpresa.Designer.cs">
+      <DependentUpon>15-TelEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="16-TelCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="16-TelCliente.Designer.cs">
+      <DependentUpon>16-TelCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="17-TelFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="17-TelFuncionario.Designer.cs">
+      <DependentUpon>17-TelFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="banco.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Variaveis.cs" />
+    <EmbeddedResource Include="01-Login.resx">
+      <DependentUpon>01-Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="02-Menu.resx">
+      <DependentUpon>02-Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="03-Empresa.resx">
+      <DependentUpon>03-Empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="04-Cliente.resx">
+      <DependentUpon>04-Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="05-Servico.resx">
+      <DependentUpon>05-Servico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="06-Funcionario.resx">
+      <DependentUpon>06-Funcionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="07-Relatorio.resx">
+      <DependentUpon>07-Relatorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="08-Contato.resx">
+      <DependentUpon>08-Contato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="09-Email.resx">
+      <DependentUpon>09-Email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="10-CadEmpresa.resx">
+      <DependentUpon>10-CadEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="11-CadCliente.resx">
+      <DependentUpon>11-CadCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="12-CadServico.resx">
+      <DependentUpon>12-CadServico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="13-CadFuncionario.resx">
+      <DependentUpon>13-CadFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="14-CadReserva.resx">
+      <DependentUpon>14-CadReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="15-TelEmpresa.resx">
+      <DependentUpon>15-TelEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="16-TelCliente.resx">
+      <DependentUpon>16-TelCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="17-TelFuncionario.resx">
+      <DependentUpon>17-TelFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\banner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\btnBanner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\btnCliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\btnContato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\btnEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\btnFuncionario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\btnRelatorio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\btnServico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\btnSobre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\cliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\contato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\data.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\empresa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\fechar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\fonecliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\fonefuncionario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\fonemepresa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\funcionario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\fundo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\icone.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\icone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\iconeEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\iconeSenha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\relatorio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\reserva.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\sair.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\sembanner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\semimagem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\servico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\refresh.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
