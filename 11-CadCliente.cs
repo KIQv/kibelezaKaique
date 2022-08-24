@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -265,25 +266,36 @@ namespace kibelezaKaique
         {
             pnlCadCliente.Location = new Point(this.Width / 2 - pnlCadCliente.Width / 2, this.Height / 2 - pnlCadCliente.Height / 2);
 
+            Variaveis.linhaFoneSelecionada = -1;
+
             if(Variaveis.funcao == "ALTERAR")
             {
                 lblCadCliente.Text = "ALTERAÇÃO DO CLIENTE";
                 pnlTelefoneCliente.Enabled = true;
+                CarregarDadosCliente();
+                CarregarFoneCliente();
             }
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            Variaveis.funcao = "CADASTRAR";
-            new frmCadCliente().Show();
+            Variaveis.funcao = "CADASTRAR FONE";
+            new frmTelCliente().Show();
             Hide();
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            Variaveis.funcao = "ALTERAR";
-            new frmCadCliente().Show();
-            Hide();
+            if(Variaveis.linhaFoneSelecionada >= 0)
+            {
+                Variaveis.funcao = "ALTERAR FONE";
+                new frmTelCliente().Show();
+                Hide();
+            }
+            else
+            {
+                MessageBox.Show("Para alterar selecione uma linha.");
+            }
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -337,7 +349,21 @@ namespace kibelezaKaique
                 Variaveis.statusCliente = cmbStatus.Text;
                 mkdData.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 Variaveis.dataCadCliente = DateTime.Parse(mkdData.Text);
-                //Variaveis.fotoCliente = "cliente/" + nomeFoto;
+                Variaveis.fotoCliente = "cliente/" + nomeFoto;
+
+                if(Variaveis.funcao == "CADASTRAR")
+                {
+                    InserirCliente();
+                    CarregarClienteCadastrado();
+                }
+                else if (Variaveis.funcao == "ALTERAR")
+                {
+                    AlterarCliente();
+                    if(Variaveis.atFotoCliente == "S")
+                    {
+                        AlterarFotoCliente();
+                    }
+                }
 
                 pnlTelefoneCliente.Enabled = true;
             }
@@ -345,8 +371,44 @@ namespace kibelezaKaique
 
         private void btnPerfil_Click(object sender, EventArgs e)
         {
-            Variaveis.atFotoCliente = "S";
-            btnSalvar.Focus();
+            try
+            {
+                OpenFileDialog ofdFoto = new OpenFileDialog();
+                ofdFoto.Multiselect = false;
+                ofdFoto.FileName = "";
+                ofdFoto.InitialDirectory = @"C:";
+                ofdFoto.Title = "SELECIONE UMA FOTO";
+                ofdFoto.Filter = "JPG ou PNG (*.jpg ou *.png)|*.jpg;*.png";
+                ofdFoto.CheckFileExists = true; // Verifica se o caminho existe
+                ofdFoto.CheckPathExists = true; // Verifica se o arquivo existe
+                ofdFoto.RestoreDirectory = true; // Restaura ao diretorio inicial
+
+                DialogResult dr = ofdFoto.ShowDialog();
+                pctPerfil.Image = Image.FromFile(ofdFoto.FileName);
+                Variaveis.fotoCliente = "cliente/" + Path.GetFileName(ofdFoto.FileName); // A variavel recebe o nome da foto com o nome da pasta "cliente/nome_foto.png"
+
+                if (dr == DialogResult.OK)
+                {
+                    try
+                    {
+                        Variaveis.atFotoCliente = "S";
+                        Variaveis.caminhoFotoCliente = ofdFoto.FileName;
+                    }
+                    catch (SecurityException erro)
+                    {
+                        MessageBox.Show("Erro de segurança - Fale com o Admin. \n Mensagem: " + erro.Message + "\nDetalhe: \n" + erro.StackTrace);
+                    }
+                    catch (Exception erro)
+                    {
+                        MessageBox.Show("Você não tem permissão. \nDetalhe: " + erro.Message);
+                    }
+                }
+                btnSalvar.Focus();
+            }
+            catch
+            {
+                btnSalvar.Focus();
+            }
         }
 
         private void cmbStatus_KeyPress(object sender, KeyPressEventArgs e)
