@@ -192,6 +192,7 @@
       <DependentUpon>17-TelFuncionario.cs</DependentUpon>
     </Compile>
     <Compile Include="banco.cs" />
+    <Compile Include="ftp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Variaveis.cs" />

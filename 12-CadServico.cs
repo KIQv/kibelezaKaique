@@ -151,7 +151,7 @@ namespace kibelezaKaique
             else
             {
                 Variaveis.nomeServico = txtNomeServico.Text;
-                Variaveis.valorServico = txtValor.Text;
+                Variaveis.valorServico = Convert.ToInt32(txtValor.Text);
                 Variaveis.statusServico = cmbStatus.Text;
                 mkdData.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 Variaveis.dataCadServico = DateTime.Parse(mkdData.Text);
@@ -161,7 +161,7 @@ namespace kibelezaKaique
                 //Variaveis.fotoServico4 = "servico/" + nomeFoto;
                 Variaveis.descServico = txtDescricao.Text;
                 Variaveis.textoServico = txtTexto.Text;
-                Variaveis.tempoExecServico = cmbTempo.Text;
+                Variaveis.tempoServico = DateTime.Parse(cmbTempo.Text);
                 Variaveis.empresaServico = cmbEmpresa.Text;
 
             }

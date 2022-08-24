@@ -119,14 +119,8 @@ namespace kibelezaKaique
             else
             {
                 Variaveis.obsReserva = txtObs.Text;
-                Variaveis.horarioReserva = cmbHorarioReserva.Text;
+                //Variaveis.horarioReserva = cmbHorarioReserva.Text;
                 Variaveis.statusReserva = cmbStatus.Text;
-                Variaveis.funcionarioReserva = cmbFuncionario.Text;
-                Variaveis.clienteReserva = cmbCliente.Text;
-                Variaveis.servicoReserva = cmbServico.Text;
-
-                //mkdData.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                //Variaveis.dataCadFuncionario = DateTime.Parse(mkdData.Text);
 
             }
         }

@@ -22,7 +22,7 @@ namespace kibelezaKaique
 
         //Cliente
         public static int codCliente;
-        public static string nomeCliente, emailCliente, senhaCliente, statusCliente, fotoCliente, atFotoCliente;
+        public static string nomeCliente, emailCliente, senhaCliente, statusCliente, fotoCliente, caminhoFotoCliente, atFotoCliente;
         public static DateTime dataCadCliente;
 
         //Funcionario
@@ -37,8 +37,9 @@ namespace kibelezaKaique
 
         //Serviço
         public static int codServico;
-        public static string nomeServico, valorServico, statusServico, fotoServico1, fotoServico2, fotoServico3, fotoServico4, descServico, textoServico, tempoExecServico, empresaServico, atFotoServico;
-        public static DateTime dataCadServico;
+        public static string nomeServico, statusServico, fotoServico1, fotoServico2, fotoServico3, fotoServico4, caminhoFotoServico1, caminhoFotoServico2, caminhoFotoServico3, caminhoFotoServico4, descServico, textoServico, empresaServico, atFotoServico;
+        public static DateTime dataCadServico, tempoServico;
+        public static double valorServico;
 
         //FoneEmpresa
         public static int codFoneEmpresa;
@@ -51,5 +52,10 @@ namespace kibelezaKaique
         //FoneFuncionario
         public static int codFoneFuncionario;
         public static string numeroFuncionario, operFuncionario, descFoneFuncionario;
+
+        //FOTOS FTP
+        public static string enderecoServidorFtp = "ftp://127.0.0.1/admin";
+        public static string usuarioFtp = "ti14";
+        public static string senhaFtp = "123";
     }
 }

@@ -16,5 +16,10 @@ namespace kibelezaKaique
         {
             InitializeComponent();
         }
+
+        private void frmTelFuncionario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

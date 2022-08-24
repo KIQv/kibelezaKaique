@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlTelFuncionario = new System.Windows.Forms.Panel();
+            this.cmbNomeFuncionario = new System.Windows.Forms.ComboBox();
             this.mkdTel = new System.Windows.Forms.MaskedTextBox();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.lblDescrição = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.pctSair = new System.Windows.Forms.PictureBox();
-            this.cmbNomeFuncionario = new System.Windows.Forms.ComboBox();
             this.pnlTelFuncionario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctSair)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +67,22 @@
             this.pnlTelFuncionario.Name = "pnlTelFuncionario";
             this.pnlTelFuncionario.Size = new System.Drawing.Size(600, 400);
             this.pnlTelFuncionario.TabIndex = 0;
+            // 
+            // cmbNomeFuncionario
+            // 
+            this.cmbNomeFuncionario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNomeFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbNomeFuncionario.FormattingEnabled = true;
+            this.cmbNomeFuncionario.Items.AddRange(new object[] {
+            "VIVO",
+            "CLARO",
+            "TIM",
+            "OI",
+            "NEXTEL"});
+            this.cmbNomeFuncionario.Location = new System.Drawing.Point(180, 91);
+            this.cmbNomeFuncionario.Name = "cmbNomeFuncionario";
+            this.cmbNomeFuncionario.Size = new System.Drawing.Size(268, 28);
+            this.cmbNomeFuncionario.TabIndex = 4;
             // 
             // mkdTel
             // 
@@ -208,22 +224,6 @@
             this.pctSair.TabIndex = 18;
             this.pctSair.TabStop = false;
             // 
-            // cmbNomeFuncionario
-            // 
-            this.cmbNomeFuncionario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbNomeFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbNomeFuncionario.FormattingEnabled = true;
-            this.cmbNomeFuncionario.Items.AddRange(new object[] {
-            "VIVO",
-            "CLARO",
-            "TIM",
-            "OI",
-            "NEXTEL"});
-            this.cmbNomeFuncionario.Location = new System.Drawing.Point(180, 91);
-            this.cmbNomeFuncionario.Name = "cmbNomeFuncionario";
-            this.cmbNomeFuncionario.Size = new System.Drawing.Size(268, 28);
-            this.cmbNomeFuncionario.TabIndex = 4;
-            // 
             // frmTelFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,6 +238,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Telefone Funcionario";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmTelFuncionario_Load);
             this.pnlTelFuncionario.ResumeLayout(false);
             this.pnlTelFuncionario.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctSair)).EndInit();
