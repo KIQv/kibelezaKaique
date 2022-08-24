@@ -51,7 +51,7 @@ namespace kibelezaKaique
 
         //FoneFuncionario
         public static int codFoneFuncionario;
-        public static string numeroFuncionario, operFuncionario, descFoneFuncionario;
+        public static string numeroFuncionario, operFoneFuncionario, descFoneFuncionario;
 
         //FOTOS FTP
         public static string enderecoServidorFtp = "ftp://127.0.0.1/admin";

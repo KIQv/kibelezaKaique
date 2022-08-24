@@ -93,10 +93,35 @@ namespace kibelezaKaique
             }
         }
 
+        private void ExcluirCliente()
+        {
+            try
+            {
+                banco.Conectar();
+                string excluir = "DELETE FROM `cliente` WHERE `idCliente`=@codigo";
+                MySqlCommand cmd = new MySqlCommand(excluir, banco.conexao);
+                cmd.Parameters.AddWithValue("@codigo", Variaveis.codCliente);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dgvCliente.DataSource = dt;
+
+                dgvCliente.ClearSelection();
+
+                banco.Desconectar();
+            }
+            catch(Exception erro)
+            {
+                MessageBox.Show("Erro ao escluir o Cliente. \n\n" + erro.Message);
+            }
+        }
+
         private void frmCliente_Load(object sender, EventArgs e)
         {
             pnlCliente.Location = new Point(this.Width / 2 - pnlCliente.Width / 2, this.Height / 2 - pnlCliente.Height / 2);
 
+            Variaveis.linhaSelecionada = -1;
             CarregarCliente();
         }
 
@@ -109,9 +134,17 @@ namespace kibelezaKaique
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            Variaveis.funcao = "ALTERAR";
-            new frmCadCliente().Show();
-            Hide();
+            if (Variaveis.linhaSelecionada >= 0)
+            {
+                Variaveis.funcao = "ALTERAR";
+                new frmCadCliente().Show();
+                Hide();
+            }
+            else
+            {
+                MessageBox.Show("Para alterar selecione uma linha.");
+            }
+
         }
 
         private void chkStatus_CheckedChanged(object sender, EventArgs e)
@@ -139,6 +172,22 @@ namespace kibelezaKaique
                 chkStatus.Enabled = false;
                 Variaveis.nomeCliente = txtNome.Text;
                 CarregarClienteNome();
+            }
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if(Variaveis.linhaSelecionada >= 0)
+            {
+                var resultado = MessageBox.Show("Deseja realmente excluir?", "EXCLUIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(resultado == DialogResult.Yes)
+                {
+                    ExcluirCliente();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Para excluir selecione uma linha");
             }
         }
     }

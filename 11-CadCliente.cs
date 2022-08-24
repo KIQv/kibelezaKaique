@@ -258,7 +258,7 @@ namespace kibelezaKaique
         }
         private void pctSair_Click(object sender, EventArgs e)
         {
-            new frmMenu().Show();
+            new frmCliente().Show();
             Close();
         }
 
@@ -300,9 +300,17 @@ namespace kibelezaKaique
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            Variaveis.funcao = "EXCLUIR";
-            new frmCadCliente().Show();
-            Hide();
+            if (Variaveis.linhaFoneSelecionada >= 0)
+            {
+                var resultado = MessageBox.Show("Deseja realmente excluir?", "EXCLUIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.Yes){ 
+                    ExcluirFoneCliente();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Para excluir selecione uma linha.");
+            }
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -349,7 +357,7 @@ namespace kibelezaKaique
                 Variaveis.statusCliente = cmbStatus.Text;
                 mkdData.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 Variaveis.dataCadCliente = DateTime.Parse(mkdData.Text);
-                Variaveis.fotoCliente = "cliente/" + nomeFoto;
+                //Variaveis.fotoCliente = "cliente/" + nomeFoto;
 
                 if(Variaveis.funcao == "CADASTRAR")
                 {
@@ -366,6 +374,8 @@ namespace kibelezaKaique
                 }
 
                 pnlTelefoneCliente.Enabled = true;
+                btnSalvar.Enabled = false;
+                btnLimpar.Enabled = false;
             }
         }
 
@@ -465,6 +475,22 @@ namespace kibelezaKaique
         private void pnlTelefoneCliente_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void dgvTelefoneCliente_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvTelefoneCliente.Sort(dgvTelefoneCliente.Columns[1], ListSortDirection.Ascending);
+            dgvTelefoneCliente.ClearSelection();
+        }
+
+        private void dgvTelefoneCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Variaveis.linhaFoneSelecionada = int.Parse(e.RowIndex.ToString());
+
+            if (Variaveis.linhaFoneSelecionada >= 0)
+            {
+                Variaveis.codFoneCliente = Convert.ToInt32(dgvTelefoneCliente[0, Variaveis.linhaFoneSelecionada].Value);
+            }
         }
     }
 }

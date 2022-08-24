@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.pnlTelCliente = new System.Windows.Forms.Panel();
+            this.cmbNomeCliente = new System.Windows.Forms.ComboBox();
             this.mkdTel = new System.Windows.Forms.MaskedTextBox();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.lblDescrição = new System.Windows.Forms.Label();
-            this.cmbFuncionario = new System.Windows.Forms.ComboBox();
+            this.cmbOperadora = new System.Windows.Forms.ComboBox();
             this.lblOperadora = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.lblNumeroTelefone = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.pctSair = new System.Windows.Forms.PictureBox();
-            this.cmbNomeCliente = new System.Windows.Forms.ComboBox();
             this.pnlTelCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctSair)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             this.pnlTelCliente.Controls.Add(this.mkdTel);
             this.pnlTelCliente.Controls.Add(this.txtDescricao);
             this.pnlTelCliente.Controls.Add(this.lblDescrição);
-            this.pnlTelCliente.Controls.Add(this.cmbFuncionario);
+            this.pnlTelCliente.Controls.Add(this.cmbOperadora);
             this.pnlTelCliente.Controls.Add(this.lblOperadora);
             this.pnlTelCliente.Controls.Add(this.txtCodigo);
             this.pnlTelCliente.Controls.Add(this.lblNumeroTelefone);
@@ -67,6 +67,22 @@
             this.pnlTelCliente.Name = "pnlTelCliente";
             this.pnlTelCliente.Size = new System.Drawing.Size(600, 400);
             this.pnlTelCliente.TabIndex = 0;
+            // 
+            // cmbNomeCliente
+            // 
+            this.cmbNomeCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNomeCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbNomeCliente.FormattingEnabled = true;
+            this.cmbNomeCliente.Items.AddRange(new object[] {
+            "VIVO",
+            "CLARO",
+            "TIM",
+            "OI",
+            "NEXTEL"});
+            this.cmbNomeCliente.Location = new System.Drawing.Point(180, 91);
+            this.cmbNomeCliente.Name = "cmbNomeCliente";
+            this.cmbNomeCliente.Size = new System.Drawing.Size(268, 28);
+            this.cmbNomeCliente.TabIndex = 56;
             // 
             // mkdTel
             // 
@@ -96,21 +112,21 @@
             this.lblDescrição.TabIndex = 55;
             this.lblDescrição.Text = "Descrição";
             // 
-            // cmbFuncionario
+            // cmbOperadora
             // 
-            this.cmbFuncionario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbFuncionario.FormattingEnabled = true;
-            this.cmbFuncionario.Items.AddRange(new object[] {
+            this.cmbOperadora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOperadora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOperadora.FormattingEnabled = true;
+            this.cmbOperadora.Items.AddRange(new object[] {
             "VIVO",
             "CLARO",
             "TIM",
             "OI",
             "NEXTEL"});
-            this.cmbFuncionario.Location = new System.Drawing.Point(180, 212);
-            this.cmbFuncionario.Name = "cmbFuncionario";
-            this.cmbFuncionario.Size = new System.Drawing.Size(268, 28);
-            this.cmbFuncionario.TabIndex = 3;
+            this.cmbOperadora.Location = new System.Drawing.Point(180, 212);
+            this.cmbOperadora.Name = "cmbOperadora";
+            this.cmbOperadora.Size = new System.Drawing.Size(268, 28);
+            this.cmbOperadora.TabIndex = 3;
             // 
             // lblOperadora
             // 
@@ -195,6 +211,7 @@
             this.btnLimpar.TabIndex = 6;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = false;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // pctSair
             // 
@@ -206,22 +223,7 @@
             this.pctSair.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctSair.TabIndex = 18;
             this.pctSair.TabStop = false;
-            // 
-            // cmbNomeCliente
-            // 
-            this.cmbNomeCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbNomeCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbNomeCliente.FormattingEnabled = true;
-            this.cmbNomeCliente.Items.AddRange(new object[] {
-            "VIVO",
-            "CLARO",
-            "TIM",
-            "OI",
-            "NEXTEL"});
-            this.cmbNomeCliente.Location = new System.Drawing.Point(180, 91);
-            this.cmbNomeCliente.Name = "cmbNomeCliente";
-            this.cmbNomeCliente.Size = new System.Drawing.Size(268, 28);
-            this.cmbNomeCliente.TabIndex = 56;
+            this.pctSair.Click += new System.EventHandler(this.pctSair_Click);
             // 
             // frmTelCliente
             // 
@@ -251,7 +253,7 @@
         private System.Windows.Forms.MaskedTextBox mkdTel;
         private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.Label lblDescrição;
-        private System.Windows.Forms.ComboBox cmbFuncionario;
+        private System.Windows.Forms.ComboBox cmbOperadora;
         private System.Windows.Forms.Label lblOperadora;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label lblNumeroTelefone;

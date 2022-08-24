@@ -20,7 +20,7 @@ namespace kibelezaKaique
 
         private void pctSair_Click(object sender, EventArgs e)
         {
-            new frmMenu().Show();
+            new frmEmpresa().Show();
             Close();
         }
         
