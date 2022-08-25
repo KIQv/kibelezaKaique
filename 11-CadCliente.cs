@@ -213,7 +213,7 @@ namespace kibelezaKaique
             try
             {
                 banco.Conectar();
-                string selecionar = "SELECT * FROM 'fonecliente' WHERE idCliente=@codigo";
+                string selecionar = "SELECT * FROM `fonecliente` WHERE `idCliente`=@codigo";
                 MySqlCommand cmd = new MySqlCommand(selecionar, banco.conexao);
                 cmd.Parameters.AddWithValue("@codigo", Variaveis.codCliente);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -226,7 +226,7 @@ namespace kibelezaKaique
                 dgvTelefoneCliente.Columns[2].HeaderText = "OPERADORA";
                 dgvTelefoneCliente.Columns[3].HeaderText = "DESCRIÇÃO";
                 dgvTelefoneCliente.Columns[4].HeaderText = "CLIENTE";
-                dgvTelefoneCliente.Columns[4].Visible = false;
+                dgvTelefoneCliente.Columns[4].Visible = false; 
                 dgvTelefoneCliente.ClearSelection();
                 banco.Desconectar();
             }
@@ -479,18 +479,18 @@ namespace kibelezaKaique
 
         private void dgvTelefoneCliente_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            dgvTelefoneCliente.Sort(dgvTelefoneCliente.Columns[1], ListSortDirection.Ascending);
-            dgvTelefoneCliente.ClearSelection();
-        }
-
-        private void dgvTelefoneCliente_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
             Variaveis.linhaFoneSelecionada = int.Parse(e.RowIndex.ToString());
 
             if (Variaveis.linhaFoneSelecionada >= 0)
             {
                 Variaveis.codFoneCliente = Convert.ToInt32(dgvTelefoneCliente[0, Variaveis.linhaFoneSelecionada].Value);
             }
+        }
+
+        private void dgvTelefoneCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvTelefoneCliente.Sort(dgvTelefoneCliente.Columns[1], ListSortDirection.Ascending);
+            dgvTelefoneCliente.ClearSelection();
         }
     }
 }

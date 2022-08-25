@@ -419,17 +419,18 @@ namespace kibelezaKaique
 
         private void dgvTelefoneEmpresa_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            dgvTelefoneEmpresa.Sort(dgvTelefoneEmpresa.Columns[1], ListSortDirection.Ascending);
+            dgvTelefoneEmpresa.ClearSelection();
+        }
+
+        private void dgvTelefoneEmpresa_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
             Variaveis.linhaFoneSelecionada = int.Parse(e.RowIndex.ToString());
             if (Variaveis.linhaFoneSelecionada >= 0)
             {
                 Variaveis.codFoneEmpresa = Convert.ToInt32(dgvTelefoneEmpresa[0, Variaveis.linhaFoneSelecionada].Value);
             }
-        }
-
-        private void dgvTelefoneEmpresa_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            dgvTelefoneEmpresa.Sort(dgvTelefoneEmpresa.Columns[1], ListSortDirection.Ascending);
-            dgvTelefoneEmpresa.ClearSelection(); 
         }
     }
 }

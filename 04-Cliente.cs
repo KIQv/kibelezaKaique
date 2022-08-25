@@ -190,5 +190,20 @@ namespace kibelezaKaique
                 MessageBox.Show("Para excluir selecione uma linha");
             }
         }
+
+        private void dgvCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Variaveis.linhaSelecionada = int.Parse(e.RowIndex.ToString());
+            if (Variaveis.linhaSelecionada >= 0)
+            {
+                Variaveis.codCliente = Convert.ToInt32(dgvCliente[0, Variaveis.linhaSelecionada].Value);
+            }
+        }
+
+        private void dgvCliente_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvCliente.Sort(dgvCliente.Columns[1], ListSortDirection.Ascending);
+            dgvCliente.ClearSelection();
+        }
     }
 }
