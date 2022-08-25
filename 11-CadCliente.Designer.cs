@@ -195,6 +195,7 @@
             this.dgvTelefoneCliente.Size = new System.Drawing.Size(499, 166);
             this.dgvTelefoneCliente.TabIndex = 0;
             this.dgvTelefoneCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTelefoneCliente_CellClick);
+            this.dgvTelefoneCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTelefoneCliente_CellContentClick);
             this.dgvTelefoneCliente.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTelefoneCliente_ColumnHeaderMouseClick);
             // 
             // txtEmail

@@ -154,6 +154,7 @@
             // 
             // dgvEmpresa
             // 
+            this.dgvEmpresa.AllowUserToAddRows = false;
             this.dgvEmpresa.AllowUserToDeleteRows = false;
             this.dgvEmpresa.AllowUserToResizeColumns = false;
             this.dgvEmpresa.AllowUserToResizeRows = false;

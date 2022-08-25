@@ -20,11 +20,9 @@ namespace kibelezaKaique
         {
             InitializeComponent();
         }
-
-        //VALIDAÇÃO FTP
-        private bool ValidarFTP()
+        public bool ValidarFtp()
         {
-            if(string.IsNullOrEmpty(Variaveis.enderecoServidorFtp) ||
+            if (string.IsNullOrEmpty(Variaveis.enderecoServidorFtp) ||
                 string.IsNullOrEmpty(Variaveis.usuarioFtp) ||
                 string.IsNullOrEmpty(Variaveis.senhaFtp))
             {
@@ -35,18 +33,15 @@ namespace kibelezaKaique
                 return true;
             }
         }
-
-        //CONVERTER A IMAGEM EM BYTE
+        // CONVERTER A IMAGEM EM BYTES
         public byte[] GetImgToByte(string caminhoArquivoFtp)
         {
             WebClient ftpClient = new WebClient();
-            ftpClient.Credentials = new NetworkCredential
-                (Variaveis.usuarioFtp, Variaveis.senhaFtp);
+            ftpClient.Credentials = new NetworkCredential(Variaveis.usuarioFtp, Variaveis.senhaFtp);
             byte[] imageToByte = ftpClient.DownloadData(caminhoArquivoFtp);
             return imageToByte;
         }
-
-        //CONVERTER A IMAGEM DE BYTE PARA IMG
+        // CONVERTER A IMAGEM DE BYTE PARA BITMAP/IMG
         public static Bitmap ByteToImage(byte[] blob)
         {
             MemoryStream mStream = new MemoryStream();
@@ -74,7 +69,8 @@ namespace kibelezaKaique
                 MessageBox.Show("Cliente cadastrado com sucesso!", "CADASTRO DO CLIENTE");
                 banco.Desconectar();
 
-                if (ValidarFTP())
+                // verificar credenciais e fazer upload da imagem
+                if (ValidarFtp())
                 {
                     if (!string.IsNullOrEmpty(Variaveis.fotoCliente))
                     {
@@ -101,20 +97,20 @@ namespace kibelezaKaique
             try
             {
                 banco.Conectar();
-                string alterar = "UPDATE `cliente` SET `nomeCliente`=@nome,`emailCliente`=@email,`senhaCliente`=@senha,`statusCliente`=@status WHERE `idCliente`=@codigo";
+                string alterar = "UPDATE cliente SET nomeCliente=@nome,emailCliente=@email,senhaCliente=@senha,statusCliente=@status WHERE idCliente=@codigo";
                 MySqlCommand cmd = new MySqlCommand(alterar, banco.conexao);
-                cmd.Parameters.AddWithValue(@"nome", Variaveis.nomeCliente);
-                cmd.Parameters.AddWithValue(@"email", Variaveis.emailCliente);
-                cmd.Parameters.AddWithValue(@"senha", Variaveis.senhaCliente);
-                cmd.Parameters.AddWithValue(@"status", Variaveis.statusCliente);
-                cmd.Parameters.AddWithValue(@"codigo", Variaveis.codCliente);
+                cmd.Parameters.AddWithValue("@nome", Variaveis.nomeCliente);
+                cmd.Parameters.AddWithValue("@email", Variaveis.emailCliente);
+                cmd.Parameters.AddWithValue("@senha", Variaveis.senhaCliente);
+                cmd.Parameters.AddWithValue("@status", Variaveis.statusCliente);
+                cmd.Parameters.AddWithValue("@codigo", Variaveis.codCliente);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Cliente alterado com sucesso!", "ALTERAÇÃO DO CLIENTE");
+                MessageBox.Show("Cliente alterado com sucesso!", "Alteração do cliente");
                 banco.Desconectar();
             }
-            catch (Exception erro)
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao alterar o cliente!\n\n" + erro.Message, "ERRO!");
+                MessageBox.Show("Erro ao alterar cliente\n\n" + ex, "ERRO");
             }
         }
 
@@ -123,14 +119,13 @@ namespace kibelezaKaique
             try
             {
                 banco.Conectar();
-                string alterar = "UPDATE `cliente` SET `fotoCliente`=@foto WHERE `idCliente`=codigo";
+                string alterar = "UPDATE cliente SET fotoCliente=@foto WHERE idCliente=@codigo";
                 MySqlCommand cmd = new MySqlCommand(alterar, banco.conexao);
                 cmd.Parameters.AddWithValue("@foto", Variaveis.fotoCliente);
                 cmd.Parameters.AddWithValue("@codigo", Variaveis.codCliente);
                 cmd.ExecuteNonQuery();
                 banco.Desconectar();
-
-                if (ValidarFTP())
+                if (ValidarFtp())
                 {
                     if (!string.IsNullOrEmpty(Variaveis.fotoCliente))
                     {
@@ -139,17 +134,17 @@ namespace kibelezaKaique
                         {
                             ftp.EnviarArquivoFtp(Variaveis.caminhoFotoCliente, urlEnviarArquivo, Variaveis.usuarioFtp, Variaveis.senhaFtp);
                         }
-                        catch (Exception erro)
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("Foto não selecionada\n\n" + erro.Message, "Foto",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                            MessageBox.Show("Foto não selecionada\n\n" + ex.Message, "ERRO");
                         }
                     }
                 }
-            
+                MessageBox.Show("Foto alterada com sucesso!", "Alteração do cliente");
             }
-            catch (Exception erro)
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao alterar o cliente!\n\n" + erro.Message, "ERRO!");
+                MessageBox.Show("Erro ao alterar a foto do cliente\n\n" + ex.Message, "ERRO");
             }
         }
 
@@ -177,7 +172,7 @@ namespace kibelezaKaique
                     txtSenha.Text = Variaveis.senhaCliente;
                     cmbStatus.Text = Variaveis.statusCliente;
                     mkdData.Text = Variaveis.dataCadCliente.ToString("dd/MM/yyyy");
-                    pctPerfil.Image = ByteToImage(GetImgToByte(Variaveis.enderecoServidorFtp + "cliente/" + Variaveis.fotoCliente));
+                    pctPerfil.Image = ByteToImage(GetImgToByte(Variaveis.enderecoServidorFtp+"cliente/"+ Variaveis.fotoCliente));
                 }
                 banco.Desconectar();
             }
@@ -387,33 +382,32 @@ namespace kibelezaKaique
                 ofdFoto.Multiselect = false;
                 ofdFoto.FileName = "";
                 ofdFoto.InitialDirectory = @"C:";
-                ofdFoto.Title = "SELECIONE UMA FOTO";
+                ofdFoto.Title = "Selecione uma foto";
                 ofdFoto.Filter = "JPG ou PNG (*.jpg ou *.png)|*.jpg;*.png";
-                ofdFoto.CheckFileExists = true; // Verifica se o caminho existe
-                ofdFoto.CheckPathExists = true; // Verifica se o arquivo existe
-                ofdFoto.RestoreDirectory = true; // Restaura ao diretorio inicial
-
-                DialogResult dr = ofdFoto.ShowDialog();
+                ofdFoto.CheckFileExists = true;
+                ofdFoto.CheckPathExists = true;
+                ofdFoto.RestoreDirectory = true;
+                DialogResult result = ofdFoto.ShowDialog();
                 pctPerfil.Image = Image.FromFile(ofdFoto.FileName);
-                Variaveis.fotoCliente = "cliente/" + Path.GetFileName(ofdFoto.FileName); // A variavel recebe o nome da foto com o nome da pasta "cliente/nome_foto.png"
-
-                if (dr == DialogResult.OK)
+                Variaveis.fotoCliente = "cliente/" + Path.GetFileName(ofdFoto.FileName);
+                if (result == DialogResult.OK)
                 {
                     try
                     {
                         Variaveis.atFotoCliente = "S";
                         Variaveis.caminhoFotoCliente = ofdFoto.FileName;
                     }
-                    catch (SecurityException erro)
+                    catch (SecurityException ex)
                     {
-                        MessageBox.Show("Erro de segurança - Fale com o Admin. \n Mensagem: " + erro.Message + "\nDetalhe: \n" + erro.StackTrace);
+                        MessageBox.Show("Erro de segurança, fale com o administrador do sistema. \n Mensagem:\n" + ex.StackTrace);
                     }
-                    catch (Exception erro)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Você não tem permissão. \nDetalhe: " + erro.Message);
+                        MessageBox.Show("Você não tem permissão." + ex.Message);
                     }
+                    Variaveis.atFotoCliente = "S";
+                    btnSalvar.Focus();
                 }
-                btnSalvar.Focus();
             }
             catch
             {
@@ -491,6 +485,11 @@ namespace kibelezaKaique
         {
             dgvTelefoneCliente.Sort(dgvTelefoneCliente.Columns[1], ListSortDirection.Ascending);
             dgvTelefoneCliente.ClearSelection();
+        }
+
+        private void dgvTelefoneCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

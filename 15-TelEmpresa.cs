@@ -27,19 +27,19 @@ namespace kibelezaKaique
             try
             {
                 banco.Conectar();
-                string inserir = "INSERT INTO `foneempresa`(`idFoneEmpresa`,`numeroEmpresa`,operFoneEmpresa`,`descFoneEmpresa`,ìdEmpresa`) VALUES (DEFAULT,@numero,@operadora,@descricao,@codEmpresa)";
+                string inserir = "INSERT INTO foneempresa(idFoneEmpresa,numeroEmpresa,operFoneEmpresa,descFoneEmpresa,idEmpresa)VALUES(DEFAULT,@numero,@operadora,@descricao,@codEmpresa)";
                 MySqlCommand cmd = new MySqlCommand(inserir, banco.conexao);
                 cmd.Parameters.AddWithValue("@numero", Variaveis.numeroEmpresa);
                 cmd.Parameters.AddWithValue("@operadora", Variaveis.operFoneEmpresa);
                 cmd.Parameters.AddWithValue("@descricao", Variaveis.descFoneEmpresa);
                 cmd.Parameters.AddWithValue("@codEmpresa", Variaveis.codEmpresa);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Telefone da empresa cadastrado com sucesso!", "CADASTRO DO TELEFONE DA EMPRESA");
+                MessageBox.Show("Telefone da empresa cadastrada com sucesso!", "CADASTRO DO TELEFONE DA EMPRESA");
                 banco.Desconectar();
             }
-            catch (Exception erro)
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao cadastrar o telefone da empresa!\n\n" + erro.Message, "ERRO!");
+                MessageBox.Show("Erro ao cadastrar telefone da empresa!\n\n" + ex.Message, "Erro.");
             }
         }
 
@@ -48,19 +48,19 @@ namespace kibelezaKaique
             try
             {
                 banco.Conectar();
-                string alterar = "UPDATE `foneempresa` SET `numeroFoneEmpresa`=@numero,`operFoneEmpresa`=@operadora,`descFoneEmpresa`=@descricao WHERE `idFoneEmpresa`=@codFone";
+                string alterar = "UPDATE foneempresa SET idFoneEmpresa=@codFone,numeroEmpresa=@numero,operFoneEmpresa=@operadora,descFoneEmpresa=@descricao";
                 MySqlCommand cmd = new MySqlCommand(alterar, banco.conexao);
                 cmd.Parameters.AddWithValue("@numero", Variaveis.numeroEmpresa);
                 cmd.Parameters.AddWithValue("@operadora", Variaveis.operFoneEmpresa);
                 cmd.Parameters.AddWithValue("@descricao", Variaveis.descFoneEmpresa);
                 cmd.Parameters.AddWithValue("@codFone", Variaveis.codFoneEmpresa);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Telefone da empresa alterado com sucesso!", "ALTERAÇÃO DO TELEFONE DA EMPRESA");
+                MessageBox.Show("Telefone da empresa alterada com sucesso!", "ALTERAÇÃO DO TELEFONE DA EMPRESA");
                 banco.Desconectar();
             }
-            catch(Exception erro)
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao alterar o telefone da empresa!\n\n" + erro.Message, "ERRO!");
+                MessageBox.Show("Erro ao cadastrar telefone da empresa!\n\n" + ex.Message, "Erro.");
             }
         }
 
@@ -92,7 +92,7 @@ namespace kibelezaKaique
             try
             {
                 banco.Conectar();
-                string selecionar = "SELECT `idFoneEmpresa`, `numeroEmpresa`, `operFoneEmpresa`, `descFoneEmpresa`, `idEmpresa` FROM `foneempresa` INNER JOIN `empresa` ON foneempresa.idEmpresa = empresa.idEmpresa WHERE idFoneEmpresa=@codFone";
+                string selecionar = "SELECT idFoneEmpresa,numeroEmpresa,operFoneEmpresa,descFoneEmpresa,nomeEmpresa FROM foneempresa INNER JOIN empresa ON foneempresa.idEmpresa = empresa.idEmpresa WHERE idFoneEmpresa=@codFone";
                 MySqlCommand cmd = new MySqlCommand(selecionar, banco.conexao);
                 cmd.Parameters.AddWithValue("@codFone", Variaveis.codFoneEmpresa);
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -102,18 +102,16 @@ namespace kibelezaKaique
                     Variaveis.operFoneEmpresa = reader.GetString(2);
                     Variaveis.descFoneEmpresa = reader.GetString(3);
                     Variaveis.nomeEmpresa = reader.GetString(4);
-
-                    txtCodigo.Text = Variaveis.codFoneEmpresa.ToString();
-                    mkdTel.Text = Variaveis.numeroEmpresa;
-                    cmbOperadora.Text = Variaveis.operFoneEmpresa;
-                    txtDescricao.Text = Variaveis.descFoneEmpresa;
-                    cmbEmpresa.Text = Variaveis.nomeEmpresa;
+                    txtCodigo.Text = Variaveis.numeroEmpresa.ToString();
+                    txtCodigo.Text = Variaveis.operFoneEmpresa;
+                    txtCodigo.Text = Variaveis.descFoneEmpresa;
+                    txtCodigo.Text = Variaveis.nomeEmpresa;
                 }
                 banco.Desconectar();
             }
-            catch (Exception erro)
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar os dados do telefone da empresa!\n\n" + erro.Message, "ERRO!");
+                MessageBox.Show("Erro ao carregar os dados de telefone da empresa!\n\n" + ex.Message, "ERRO");
             }
         }
 
@@ -129,7 +127,20 @@ namespace kibelezaKaique
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Variaveis.funcao = "SALVAR";
+            Variaveis.nomeEmpresa = cmbEmpresa.Text;
+            Variaveis.numeroEmpresa = mkdTel.Text;
+            Variaveis.operFoneEmpresa = cmbOperadora.Text;
+            Variaveis.descFoneEmpresa = txtDescricao.Text;
+            if (Variaveis.funcao == "CADASTRAR FONE")
+            {
+                InserirFoneEmpresa();
+            }
+            else if (Variaveis.funcao == "ALTERAR FONE")
+            {
+                AlterarFoneEmpresa();
+            }
+            btnSalvar.Enabled = false;
+            btnLimpar.Enabled = false;
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
