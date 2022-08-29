@@ -49,6 +49,7 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.pctSair = new System.Windows.Forms.PictureBox();
             this.lblCadServico = new System.Windows.Forms.Label();
+            this.mkdData = new System.Windows.Forms.MaskedTextBox();
             this.pnlCalReserva.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctSair)).BeginInit();
             this.SuspendLayout();
@@ -57,6 +58,7 @@
             // 
             this.pnlCalReserva.BackgroundImage = global::kibelezaKaique.Properties.Resources.reserva;
             this.pnlCalReserva.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlCalReserva.Controls.Add(this.mkdData);
             this.pnlCalReserva.Controls.Add(this.cmbServico);
             this.pnlCalReserva.Controls.Add(this.lblServico);
             this.pnlCalReserva.Controls.Add(this.cmbCliente);
@@ -134,6 +136,12 @@
             this.cmbHorarioReserva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbHorarioReserva.FormattingEnabled = true;
             this.cmbHorarioReserva.Items.AddRange(new object[] {
+            "06:00",
+            "06:30",
+            "07:00",
+            "07:30",
+            "08:00",
+            "08:30",
             "09:00",
             "09:30",
             "10:00",
@@ -344,6 +352,16 @@
             this.lblCadServico.Text = "CADASTRO DA RESERVA";
             this.lblCadServico.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // mkdData
+            // 
+            this.mkdData.Enabled = false;
+            this.mkdData.Location = new System.Drawing.Point(180, 397);
+            this.mkdData.Mask = "00/00/0000";
+            this.mkdData.Name = "mkdData";
+            this.mkdData.Size = new System.Drawing.Size(227, 20);
+            this.mkdData.TabIndex = 488;
+            this.mkdData.ValidatingType = typeof(System.DateTime);
+            // 
             // frmCadReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,5 +407,6 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblDataReserva;
         private System.Windows.Forms.MonthCalendar calReserva;
+        private System.Windows.Forms.MaskedTextBox mkdData;
     }
 }
