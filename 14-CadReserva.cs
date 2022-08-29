@@ -106,6 +106,75 @@ namespace kibelezaKaique
             }
         }
 
+        private void CarregarFuncionarios()
+        {
+            try
+            {
+                banco.Conectar();
+                string selecionar = "SELECT idFuncionario,nomeFuncionario FROM funcionario ORDER BY nomeFuncionario";
+                MySqlCommand cmd = new MySqlCommand(selecionar, banco.conexao);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                cmbFuncionario.DataSource = dt;
+                cmbFuncionario.DisplayMember = "nomeFuncionario";
+                cmbFuncionario.ValueMember = "idFuncionario";
+                cmbFuncionario.SelectedIndex = -1;
+                banco.Desconectar();
+            }
+            catch(Exception erro)
+            {
+                MessageBox.Show("Erro ao carregar a lista de funcionarios. \n\n" + erro.Message);
+            }
+        }
+
+        private void CarregarClientes()
+        {
+            try
+            {
+                banco.Conectar();
+                string selecionar = "SELECT idCliente,nomeCliente FROM cliente ORDER BY nomeCliente";
+                MySqlCommand cmd = new MySqlCommand(selecionar, banco.conexao);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                cmbCliente.DataSource = dt;
+                cmbCliente.DisplayMember = "nomeCliente";
+                cmbCliente.ValueMember = "idCliente";
+                cmbCliente.SelectedIndex = -1;
+                banco.Desconectar();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao carregar a lista de Clientes. \n\n" + erro.Message);
+            }
+        }
+
+        private void CarregarServicos()
+        {
+            try
+            {
+                banco.Conectar();
+                string selecionar = "SELECT idServico,nomeServico FROM servico ORDER BY nomeServico";
+                MySqlCommand cmd = new MySqlCommand(selecionar, banco.conexao);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                cmbServico.DataSource = dt;
+                cmbServico.DisplayMember = "nomeServico";
+                cmbServico.ValueMember = "idServico";
+                cmbServico.SelectedIndex = -1;
+                banco.Desconectar();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao carregar a lista de Servicos. \n\n" + erro.Message);
+            }
+        }
+
         private void frmCalReserva_Load(object sender, EventArgs e)
         {
             pnlCalReserva.Location = new Point(this.Width / 2 - pnlCalReserva.Width / 2, this.Height / 2 - pnlCalReserva.Height / 2);
