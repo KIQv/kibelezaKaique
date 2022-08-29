@@ -32,7 +32,7 @@
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.lblHora = new System.Windows.Forms.Label();
             this.lblData = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFuncionario = new System.Windows.Forms.TextBox();
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.chkCliente = new System.Windows.Forms.CheckBox();
             this.chkFuncionario = new System.Windows.Forms.CheckBox();
@@ -76,7 +76,7 @@
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(206)))), ((int)(((byte)(210)))));
             this.pnlMenu.Controls.Add(this.lblHora);
             this.pnlMenu.Controls.Add(this.lblData);
-            this.pnlMenu.Controls.Add(this.textBox1);
+            this.pnlMenu.Controls.Add(this.txtFuncionario);
             this.pnlMenu.Controls.Add(this.txtCliente);
             this.pnlMenu.Controls.Add(this.chkCliente);
             this.pnlMenu.Controls.Add(this.chkFuncionario);
@@ -124,12 +124,13 @@
             this.lblData.TabIndex = 1;
             this.lblData.Text = "00/00/0000";
             // 
-            // textBox1
+            // txtFuncionario
             // 
-            this.textBox1.Location = new System.Drawing.Point(342, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(401, 20);
-            this.textBox1.TabIndex = 4;
+            this.txtFuncionario.Location = new System.Drawing.Point(342, 49);
+            this.txtFuncionario.Name = "txtFuncionario";
+            this.txtFuncionario.Size = new System.Drawing.Size(401, 20);
+            this.txtFuncionario.TabIndex = 4;
+            this.txtFuncionario.TextChanged += new System.EventHandler(this.txtFuncionario_TextChanged);
             // 
             // txtCliente
             // 
@@ -137,6 +138,7 @@
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(401, 20);
             this.txtCliente.TabIndex = 3;
+            this.txtCliente.TextChanged += new System.EventHandler(this.txtCliente_TextChanged);
             // 
             // chkCliente
             // 
@@ -148,6 +150,7 @@
             this.chkCliente.TabIndex = 1;
             this.chkCliente.Text = "Cliente";
             this.chkCliente.UseVisualStyleBackColor = true;
+            this.chkCliente.CheckedChanged += new System.EventHandler(this.chkCliente_CheckedChanged);
             // 
             // chkFuncionario
             // 
@@ -159,20 +162,23 @@
             this.chkFuncionario.TabIndex = 2;
             this.chkFuncionario.Text = "Funcionário";
             this.chkFuncionario.UseVisualStyleBackColor = true;
+            this.chkFuncionario.CheckedChanged += new System.EventHandler(this.chkFuncionario_CheckedChanged);
             // 
             // cmbStatus
             // 
             this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Items.AddRange(new object[] {
+            "TODAS",
             "ARPOVADA",
-            "CANCELADO",
-            "FINALIZADO",
+            "CANCELADA",
+            "FINALIZADA",
             "AGUARDANDO"});
             this.cmbStatus.Location = new System.Drawing.Point(807, 25);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(121, 21);
             this.cmbStatus.TabIndex = 5;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
             // 
             // lblStatus
             // 
@@ -225,6 +231,7 @@
             this.btnEditar.TabIndex = 10;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnAguardar
             // 
@@ -239,6 +246,7 @@
             this.btnAguardar.TabIndex = 9;
             this.btnAguardar.Text = "Aguardar";
             this.btnAguardar.UseVisualStyleBackColor = false;
+            this.btnAguardar.Click += new System.EventHandler(this.btnAguardar_Click);
             // 
             // btnFinalizar
             // 
@@ -253,6 +261,7 @@
             this.btnFinalizar.TabIndex = 8;
             this.btnFinalizar.Text = "Finalizar";
             this.btnFinalizar.UseVisualStyleBackColor = false;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
             // 
             // btnCancelar
             // 
@@ -267,6 +276,7 @@
             this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAprovar
             // 
@@ -281,6 +291,7 @@
             this.btnAprovar.TabIndex = 6;
             this.btnAprovar.Text = "Aprovar";
             this.btnAprovar.UseVisualStyleBackColor = false;
+            this.btnAprovar.Click += new System.EventHandler(this.btnAprovar_Click);
             // 
             // dgvMenu
             // 
@@ -290,6 +301,8 @@
             this.dgvMenu.Name = "dgvMenu";
             this.dgvMenu.Size = new System.Drawing.Size(495, 321);
             this.dgvMenu.TabIndex = 10;
+            this.dgvMenu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenu_CellClick);
+            this.dgvMenu.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvMenu_ColumnHeaderMouseClick);
             // 
             // lblUsuario
             // 
@@ -460,7 +473,7 @@
         private System.Windows.Forms.Button btnFinalizar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblData;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFuncionario;
         private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.CheckBox chkCliente;
         private System.Windows.Forms.CheckBox chkFuncionario;
