@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -53,10 +54,34 @@ namespace kibelezaKaique
             }
             else
             {
-                MessageBox.Show("Acesso negado!");
-                txtEmail.Clear();
-                txtSenha.Clear();
-                txtEmail.Focus();
+                try
+                {
+                    banco.Conectar();
+                    string selecionar = "SELECT `nomeFuncionario`,`emailFuncionario`,`senhaFuncionario`,`nivelFuncionario` FROM `funcionario` WHERE `emailFuncionario`=@email AND `senhaFuncionario`=@senha AND `statusFuncionario`=@status";
+                    MySqlCommand cmd = new MySqlCommand(selecionar, banco.conexao);
+                    cmd.Parameters.AddWithValue("@email", Variaveis.usuario);
+                    cmd.Parameters.AddWithValue("@senha", Variaveis.senha);
+                    cmd.Parameters.AddWithValue("@status", "ATIVO");
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        Variaveis.usuario = reader.GetString(0);
+                        Variaveis.nivel = reader.GetString(3);
+                        new frmMenu().Show();
+                        Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("ACESSO NEGADO");
+                        txtEmail.Clear();
+                        txtSenha.Clear();
+                        txtEmail.Focus();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("ERRO AO ACESSAR O BANCO DE DADOS");
+                }
             }
         }
 
