@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlCalReserva = new System.Windows.Forms.Panel();
+            this.mkdData = new System.Windows.Forms.MaskedTextBox();
             this.cmbServico = new System.Windows.Forms.ComboBox();
             this.lblServico = new System.Windows.Forms.Label();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
@@ -48,8 +49,7 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.pctSair = new System.Windows.Forms.PictureBox();
-            this.lblCadServico = new System.Windows.Forms.Label();
-            this.mkdData = new System.Windows.Forms.MaskedTextBox();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.pnlCalReserva.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctSair)).BeginInit();
             this.SuspendLayout();
@@ -78,11 +78,21 @@
             this.pnlCalReserva.Controls.Add(this.btnSalvar);
             this.pnlCalReserva.Controls.Add(this.btnLimpar);
             this.pnlCalReserva.Controls.Add(this.pctSair);
-            this.pnlCalReserva.Controls.Add(this.lblCadServico);
+            this.pnlCalReserva.Controls.Add(this.lblTitulo);
             this.pnlCalReserva.Location = new System.Drawing.Point(100, 25);
             this.pnlCalReserva.Name = "pnlCalReserva";
             this.pnlCalReserva.Size = new System.Drawing.Size(1000, 600);
             this.pnlCalReserva.TabIndex = 0;
+            // 
+            // mkdData
+            // 
+            this.mkdData.Enabled = false;
+            this.mkdData.Location = new System.Drawing.Point(180, 397);
+            this.mkdData.Mask = "00/00/0000";
+            this.mkdData.Name = "mkdData";
+            this.mkdData.Size = new System.Drawing.Size(227, 20);
+            this.mkdData.TabIndex = 488;
+            this.mkdData.ValidatingType = typeof(System.DateTime);
             // 
             // cmbServico
             // 
@@ -340,27 +350,17 @@
             this.pctSair.TabStop = false;
             this.pctSair.Click += new System.EventHandler(this.pctSair_Click);
             // 
-            // lblCadServico
+            // lblTitulo
             // 
-            this.lblCadServico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(10)))), ((int)(((byte)(45)))));
-            this.lblCadServico.Font = new System.Drawing.Font("Britannic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCadServico.ForeColor = System.Drawing.Color.White;
-            this.lblCadServico.Location = new System.Drawing.Point(166, 0);
-            this.lblCadServico.Name = "lblCadServico";
-            this.lblCadServico.Size = new System.Drawing.Size(834, 72);
-            this.lblCadServico.TabIndex = 28;
-            this.lblCadServico.Text = "CADASTRO DA RESERVA";
-            this.lblCadServico.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // mkdData
-            // 
-            this.mkdData.Enabled = false;
-            this.mkdData.Location = new System.Drawing.Point(180, 397);
-            this.mkdData.Mask = "00/00/0000";
-            this.mkdData.Name = "mkdData";
-            this.mkdData.Size = new System.Drawing.Size(227, 20);
-            this.mkdData.TabIndex = 488;
-            this.mkdData.ValidatingType = typeof(System.DateTime);
+            this.lblTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(10)))), ((int)(((byte)(45)))));
+            this.lblTitulo.Font = new System.Drawing.Font("Britannic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(166, 0);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(834, 72);
+            this.lblTitulo.TabIndex = 28;
+            this.lblTitulo.Text = "CADASTRO DA RESERVA";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmCadReserva
             // 
@@ -395,7 +395,7 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.PictureBox pctSair;
-        private System.Windows.Forms.Label lblCadServico;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.ComboBox cmbServico;
         private System.Windows.Forms.Label lblServico;
         private System.Windows.Forms.ComboBox cmbCliente;

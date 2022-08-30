@@ -23,7 +23,7 @@ namespace kibelezaKaique
             try
             {
                 banco.Conectar();
-                string selecionar = "SELECT * FROM `reservacompleta` WHERE `CLIENTE` LIKE '%" + Variaveis.nomeCliente + "%' AND `FUNCIONARIO` LIKE '%" + Variaveis.nomeFuncionario + "%'";
+                string selecionar = "SELECT * FROM `reservacompleta` WHERE `CLIENTE` LIKE '%" + Variaveis.nomeCliente + "%' AND `FUNCIONÁRIO` LIKE '%" + Variaveis.nomeFuncionario + "%'";
                 MySqlCommand cmd = new MySqlCommand(selecionar, banco.conexao);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -46,7 +46,7 @@ namespace kibelezaKaique
             try
             {
                 banco.Conectar();
-                string selecionar = "SELECT * FROM `reservacompleta` WHERE `STATUS` =@status AND `CLIENTE` LIKE '%" + Variaveis.nomeCliente + "%' AND `FUNCIONARIO` LIKE '%" + Variaveis.nomeFuncionario + "%'";
+                string selecionar = "SELECT * FROM `reservacompleta` WHERE `STATUS` =@status AND `CLIENTE` LIKE '%" + Variaveis.nomeCliente + "%' AND `FUNCIONÁRIO` LIKE '%" + Variaveis.nomeFuncionario + "%'";
                 MySqlCommand cmd = new MySqlCommand(selecionar, banco.conexao);
                 cmd.Parameters.AddWithValue("@status", Variaveis.statusReserva);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -70,7 +70,7 @@ namespace kibelezaKaique
             try
             {
                 banco.Conectar();
-                string alterar = "UPDATE `reserva` SET `statusReserva`=@status WHERE `idReserva`=codigo";
+                string alterar = "UPDATE `reserva` SET `statusReserva`=@status WHERE `idReserva`=@codigo";
                 MySqlCommand cmd = new MySqlCommand(alterar, banco.conexao);
                 cmd.Parameters.AddWithValue("status", Variaveis.statusReserva);
                 cmd.Parameters.AddWithValue("codigo", Variaveis.codReserva);
@@ -104,7 +104,7 @@ namespace kibelezaKaique
 
             lblUsuario.Text = Variaveis.usuario + " Bem vindo ao sistema KiBeleza!";
 
-            cmbStatus.SelectedIndex = -1;
+            cmbStatus.SelectedIndex = 0;
 
             Variaveis.linhaSelecionada = -1;
 
