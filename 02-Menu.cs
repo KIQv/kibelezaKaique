@@ -111,6 +111,17 @@ namespace kibelezaKaique
             CarregarReserva();
 
             timer1.Start();
+
+            if(Variaveis.nivel != "ADMINISTRADOR")
+            {
+                pctLogo.Enabled = false;
+                pctFuncionario.Enabled = false;
+            }
+            else
+            {
+                pctLogo.Enabled = true;
+                pctFuncionario.Enabled = true;
+            }
         }
 
         private void pctSair_Click(object sender, EventArgs e)
