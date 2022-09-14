@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlRelatorio = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlFiltro = new System.Windows.Forms.Panel();
@@ -41,25 +43,25 @@
             this.radCliente = new System.Windows.Forms.RadioButton();
             this.lblTabela = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
-            this.dgvRelatorio = new System.Windows.Forms.DataGridView();
             this.pctSair = new System.Windows.Forms.PictureBox();
+            this.dgvRelatorio = new System.Windows.Forms.DataGridView();
             this.pnlRelatorio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlFiltro.SuspendLayout();
             this.pnlTabela.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctSair)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlRelatorio
             // 
             this.pnlRelatorio.BackgroundImage = global::kibelezaKaique.Properties.Resources.relatorio;
             this.pnlRelatorio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlRelatorio.Controls.Add(this.dgvRelatorio);
             this.pnlRelatorio.Controls.Add(this.pictureBox1);
             this.pnlRelatorio.Controls.Add(this.pnlFiltro);
             this.pnlRelatorio.Controls.Add(this.pnlTabela);
             this.pnlRelatorio.Controls.Add(this.btnSalvar);
-            this.pnlRelatorio.Controls.Add(this.dgvRelatorio);
             this.pnlRelatorio.Controls.Add(this.pctSair);
             this.pnlRelatorio.Location = new System.Drawing.Point(100, 25);
             this.pnlRelatorio.Name = "pnlRelatorio";
@@ -219,15 +221,7 @@
             this.btnSalvar.TabIndex = 28;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = false;
-            // 
-            // dgvRelatorio
-            // 
-            this.dgvRelatorio.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(10)))), ((int)(((byte)(45)))));
-            this.dgvRelatorio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRelatorio.Location = new System.Drawing.Point(169, 125);
-            this.dgvRelatorio.Name = "dgvRelatorio";
-            this.dgvRelatorio.Size = new System.Drawing.Size(828, 472);
-            this.dgvRelatorio.TabIndex = 19;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // pctSair
             // 
@@ -240,6 +234,42 @@
             this.pctSair.TabIndex = 18;
             this.pctSair.TabStop = false;
             this.pctSair.Click += new System.EventHandler(this.pctSair_Click);
+            // 
+            // dgvRelatorio
+            // 
+            this.dgvRelatorio.AllowUserToAddRows = false;
+            this.dgvRelatorio.AllowUserToDeleteRows = false;
+            this.dgvRelatorio.AllowUserToResizeColumns = false;
+            this.dgvRelatorio.AllowUserToResizeRows = false;
+            this.dgvRelatorio.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvRelatorio.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvRelatorio.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(10)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(10)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(10)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRelatorio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvRelatorio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Britannic Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(10)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(52)))), ((int)(((byte)(96)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRelatorio.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvRelatorio.EnableHeadersVisualStyles = false;
+            this.dgvRelatorio.Location = new System.Drawing.Point(169, 125);
+            this.dgvRelatorio.MultiSelect = false;
+            this.dgvRelatorio.Name = "dgvRelatorio";
+            this.dgvRelatorio.ReadOnly = true;
+            this.dgvRelatorio.RowHeadersVisible = false;
+            this.dgvRelatorio.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRelatorio.Size = new System.Drawing.Size(828, 472);
+            this.dgvRelatorio.TabIndex = 32;
             // 
             // frmRelatorio
             // 
@@ -262,8 +292,8 @@
             this.pnlFiltro.PerformLayout();
             this.pnlTabela.ResumeLayout(false);
             this.pnlTabela.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctSair)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -274,7 +304,6 @@
         private System.Windows.Forms.Panel pnlTabela;
         private System.Windows.Forms.Label lblTabela;
         private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.DataGridView dgvRelatorio;
         private System.Windows.Forms.PictureBox pctSair;
         private System.Windows.Forms.Panel pnlFiltro;
         private System.Windows.Forms.RadioButton radTelefone;
@@ -285,5 +314,6 @@
         private System.Windows.Forms.RadioButton radEmpresa;
         private System.Windows.Forms.RadioButton radCliente;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView dgvRelatorio;
     }
 }
